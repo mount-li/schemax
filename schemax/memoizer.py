@@ -1,6 +1,4 @@
-from typing import Protocol, Any, TypeAlias
-
-KeyType: TypeAlias = str
+from typing import Protocol, Any
 
 
 class Memoizer(Protocol):
@@ -14,11 +12,11 @@ class Memoizer(Protocol):
     A memoizer must implement some kind of a key-value storage mechanism under the hood.
     """
 
-    def add(self, key: KeyType, obj: Any) -> None:
+    def add(self, key: str, obj: Any) -> None:
         """Store an object under the given key"""
         ...
 
-    def get(self, key: KeyType) -> Any | None:
+    def get(self, key: str) -> Any | None:
         """Retrieve an object under the given key or return None"""
         ...
 
