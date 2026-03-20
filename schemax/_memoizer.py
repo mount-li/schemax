@@ -16,7 +16,7 @@ class Memoizer(Protocol):
         """Store an object under the given key"""
         ...
 
-    def get(self, key: str) -> Any | None:
+    def get(self, key: str) -> dict[str, Any] | None:
         """Retrieve an object under the given key or return None"""
         ...
 
@@ -24,8 +24,8 @@ class Memoizer(Protocol):
 class NoopMemoizer(Memoizer):
     """Memoizer that does nothing, effectively turning memoization off"""
 
-    def add(self, key, obj):
+    def add(self, key: str, obj: Any) -> None:
         pass
 
-    def get(self, key):
+    def get(self, key: str) -> dict[str, Any] | None:
         return None

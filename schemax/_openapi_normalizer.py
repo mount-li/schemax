@@ -4,7 +4,7 @@ from referencing import Registry, Resource
 from referencing._core import Resolver
 
 from ._interface import output_warning
-from .memoizer import Memoizer, NoopMemoizer
+from ._memoizer import Memoizer, NoopMemoizer
 
 
 def openapi_normalizer(
@@ -29,8 +29,7 @@ def openapi_normalizer(
                 memoized_schema = memoizer.get(ref)
                 if memoized_schema is not None:
                     return memoized_schema
-                else:
-                    resolved = resolver.lookup(schema["$ref"]).contents
+                resolved = resolver.lookup(schema["$ref"]).contents
                 ran_schema = schema_runner(resolved, resolver, path + [ref])
                 memoizer.add(ref, ran_schema)
                 return ran_schema
